@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_290f847aa4fdc4a4e81631448083e4e0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@master/folium/templates/leaflet_heat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+<div style="position: fixed;
+     bottom: 50px; left: 50px; width: 250px; height: 150px;
+     background-color: white; z-index:9999; font-size:14px;
+     border:2px solid grey; padding: 10px;">
+     <b>Legend:</b><br>
+     🔥 Wildfire Risk Heatmap<br>
+     🌊 Flood Risk Heatmap<br>
+     💰 Premium Increases<br>
+     📍 Clickable Markers = Insurance Impact<br><br>
+     Use top-right checkbox to toggle layers.
+</div>
+    
+            <div class="folium-map" id="map_290f847aa4fdc4a4e81631448083e4e0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_290f847aa4fdc4a4e81631448083e4e0 = L.map(
+                "map_290f847aa4fdc4a4e81631448083e4e0",
+                {
+                    center: [37.8, -96.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 4,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_95cc1b6bc56e2581c201542fe0cb2850 = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_290f847aa4fdc4a4e81631448083e4e0);
+        
+    
+            var heat_map_f97259012252ef937c04a5bee092cca9 = L.heatLayer(
+                [[34.0522, -118.2437, 0.9], [38.5816, -121.4944, 0.8], [36.7783, -119.4179, 0.85]],
+                {"blur": 15, "maxZoom": 6, "minOpacity": 0.5, "radius": 25}
+            ).addTo(map_290f847aa4fdc4a4e81631448083e4e0);
+        
+    
+            var heat_map_607583f697af1dbd4ba95ea9699442c3 = L.heatLayer(
+                [[29.9511, -90.0715, 0.85], [30.6954, -88.0399, 0.75], [27.9506, -82.4572, 0.65]],
+                {"blur": 15, "gradient": {"0.4": "blue", "0.65": "cyan", "1": "navy"}, "maxZoom": 6, "minOpacity": 0.5, "radius": 25}
+            ).addTo(map_290f847aa4fdc4a4e81631448083e4e0);
+        
+    
+            var heat_map_0727e84ea89f90eea98f04e7b4769f47 = L.heatLayer(
+                [[25.7617, -80.1918, 0.8], [29.7604, -95.3698, 0.75], [38.2527, -85.7585, 0.6]],
+                {"blur": 15, "gradient": {"0.4": "orange", "0.65": "red", "1": "darkred"}, "maxZoom": 6, "minOpacity": 0.5, "radius": 25}
+            ).addTo(map_290f847aa4fdc4a4e81631448083e4e0);
+        
+    
+            var marker_cluster_b2ac9de2e6498133e89617b9571a5156 = L.markerClusterGroup(
+                {}
+            );
+            map_290f847aa4fdc4a4e81631448083e4e0.addLayer(marker_cluster_b2ac9de2e6498133e89617b9571a5156);
+        
+    
+            var marker_601cc31db9d70ebccaa1b23660462640 = L.marker(
+                [34.0522, -118.2437],
+                {}
+            ).addTo(marker_cluster_b2ac9de2e6498133e89617b9571a5156);
+        
+    
+            var icon_8b50f76484e54dfc47367a8fb0239d8a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_601cc31db9d70ebccaa1b23660462640.setIcon(icon_8b50f76484e54dfc47367a8fb0239d8a);
+        
+    
+        var popup_cb5ecd2dedfccb75d94bb44a16c14094 = L.popup({"maxWidth": 300});
+
+        
+            var html_fd189c17e0cd6a63988d8aa27d630c1f = $(`<div id="html_fd189c17e0cd6a63988d8aa27d630c1f" style="width: 100.0%; height: 100.0%;"><b>Los Angeles, CA</b><br>Wildfire zone<br>FAIR Plan ↑ 75%<br>State Farm exits 2023</div>`)[0];
+            popup_cb5ecd2dedfccb75d94bb44a16c14094.setContent(html_fd189c17e0cd6a63988d8aa27d630c1f);
+        
+
+        marker_601cc31db9d70ebccaa1b23660462640.bindPopup(popup_cb5ecd2dedfccb75d94bb44a16c14094)
+        ;
+
+        
+    
+    
+            var marker_398b8f2974d13f1e5fe5d8458284967f = L.marker(
+                [25.7617, -80.1918],
+                {}
+            ).addTo(marker_cluster_b2ac9de2e6498133e89617b9571a5156);
+        
+    
+            var icon_84c112a8f60790eb0dbb78abacb5db9e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_398b8f2974d13f1e5fe5d8458284967f.setIcon(icon_84c112a8f60790eb0dbb78abacb5db9e);
+        
+    
+        var popup_39105f01efa7073937e9df7c901084c1 = L.popup({"maxWidth": 300});
+
+        
+            var html_d9f8227f1010f0988991992b46b06c51 = $(`<div id="html_d9f8227f1010f0988991992b46b06c51" style="width: 100.0%; height: 100.0%;"><b>Miami, FL</b><br>Hurricane-prone<br>Citizens policy count ↑<br>Flood insurance required</div>`)[0];
+            popup_39105f01efa7073937e9df7c901084c1.setContent(html_d9f8227f1010f0988991992b46b06c51);
+        
+
+        marker_398b8f2974d13f1e5fe5d8458284967f.bindPopup(popup_39105f01efa7073937e9df7c901084c1)
+        ;
+
+        
+    
+    
+            var marker_11a3cf2d5e5a9785546a15e12deff39e = L.marker(
+                [29.9511, -90.0715],
+                {}
+            ).addTo(marker_cluster_b2ac9de2e6498133e89617b9571a5156);
+        
+    
+            var icon_3d7d797ccb2fa3509a4ba3ddbf936ab2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_11a3cf2d5e5a9785546a15e12deff39e.setIcon(icon_3d7d797ccb2fa3509a4ba3ddbf936ab2);
+        
+    
+        var popup_f5c2b00ab400bcaf3e7d353a65966f7c = L.popup({"maxWidth": 300});
+
+        
+            var html_94d474c2803be498cf87bf5dfb0f712a = $(`<div id="html_94d474c2803be498cf87bf5dfb0f712a" style="width: 100.0%; height: 100.0%;"><b>New Orleans, LA</b><br>Post-Ida flood recovery<br>12 insurers exited market</div>`)[0];
+            popup_f5c2b00ab400bcaf3e7d353a65966f7c.setContent(html_94d474c2803be498cf87bf5dfb0f712a);
+        
+
+        marker_11a3cf2d5e5a9785546a15e12deff39e.bindPopup(popup_f5c2b00ab400bcaf3e7d353a65966f7c)
+        ;
+
+        
+    
+    
+            var marker_7769cadccf456e9a2eefa3bd007c35f1 = L.marker(
+                [30.2672, -97.7431],
+                {}
+            ).addTo(marker_cluster_b2ac9de2e6498133e89617b9571a5156);
+        
+    
+            var icon_713d6babc10a662c167e8bb535089a1c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_7769cadccf456e9a2eefa3bd007c35f1.setIcon(icon_713d6babc10a662c167e8bb535089a1c);
+        
+    
+        var popup_968dc92f16d0713017eb009719e1db2e = L.popup({"maxWidth": 300});
+
+        
+            var html_ea367c4f7b0d5db70710e9f13d55efb0 = $(`<div id="html_ea367c4f7b0d5db70710e9f13d55efb0" style="width: 100.0%; height: 100.0%;"><b>Austin, TX</b><br>TWIA rate hike: 10%<br>Windstorm exposure</div>`)[0];
+            popup_968dc92f16d0713017eb009719e1db2e.setContent(html_ea367c4f7b0d5db70710e9f13d55efb0);
+        
+
+        marker_7769cadccf456e9a2eefa3bd007c35f1.bindPopup(popup_968dc92f16d0713017eb009719e1db2e)
+        ;
+
+        
+    
+    
+            var marker_e81cfe1b5f49f402f8817d963ac1b3de = L.marker(
+                [38.2527, -85.7585],
+                {}
+            ).addTo(marker_cluster_b2ac9de2e6498133e89617b9571a5156);
+        
+    
+            var icon_c0d3669b4683b898a7d07bbfd775f6d5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_e81cfe1b5f49f402f8817d963ac1b3de.setIcon(icon_c0d3669b4683b898a7d07bbfd775f6d5);
+        
+    
+        var popup_2eb62ced4667e4f06f11b86ec6536773 = L.popup({"maxWidth": 300});
+
+        
+            var html_f922342acc3f8d5d4e1cb813448ec9a6 = $(`<div id="html_f922342acc3f8d5d4e1cb813448ec9a6" style="width: 100.0%; height: 100.0%;"><b>Louisville, KY</b><br>Litigation reform passed<br>Market stabilized</div>`)[0];
+            popup_2eb62ced4667e4f06f11b86ec6536773.setContent(html_f922342acc3f8d5d4e1cb813448ec9a6);
+        
+
+        marker_e81cfe1b5f49f402f8817d963ac1b3de.bindPopup(popup_2eb62ced4667e4f06f11b86ec6536773)
+        ;
+
+        
+    
+    
+            var layer_control_89decd502701d3ca4a57237551ff556b = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_95cc1b6bc56e2581c201542fe0cb2850,
+                },
+                overlays :  {
+                    "Wildfire Risk" : heat_map_f97259012252ef937c04a5bee092cca9,
+                    "Flood Risk" : heat_map_607583f697af1dbd4ba95ea9699442c3,
+                    "Premium Increases" : heat_map_0727e84ea89f90eea98f04e7b4769f47,
+                    "Insurance Impact Markers" : marker_cluster_b2ac9de2e6498133e89617b9571a5156,
+                },
+            };
+            L.control.layers(
+                layer_control_89decd502701d3ca4a57237551ff556b.base_layers,
+                layer_control_89decd502701d3ca4a57237551ff556b.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_290f847aa4fdc4a4e81631448083e4e0);
+        
+</script>
+</html>
